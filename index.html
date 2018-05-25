@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GiphyApp</title>
+</head>
+<body>
+    <button id="rappers-button">Click for Rappers</button>
+    <div id="images">    
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $("#rappers-button").on("click", function(){
+        var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=ir8FIHsOnC8rcueYnBrfb3dEBMnDlquf=rappers";
+        $.ajax({
+            url:queryURL,
+            method:"GET"
+        })
+
+        .then(function(response) {
+            var imageURL = response.data.image_original_url;
+            var rapperImage = $("<img>");
+
+            rapperImage.attr("src",imageURL);
+            rapperImage.attr("alt","random rappers");
+
+            $("images").prepend(rapperImage);
+
+            
+        });
+    }); 
+    </script>
+    
+</body>
+</html>
